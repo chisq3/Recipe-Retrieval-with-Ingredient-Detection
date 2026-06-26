@@ -19,6 +19,7 @@ baseline/
 tests/
 md/
 eda/
+rag/build/
 
 # Build-time taxonomy/rule files are not needed when using the prepared outputs/.
 rules/buildtime_*.json
