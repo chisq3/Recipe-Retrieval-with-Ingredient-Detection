@@ -1,0 +1,31 @@
+# Python dependencies for the recipe-recommendation workspace.
+# Pinned to the `recipe-rag` conda env (Python 3.11.15). One unified env serves
+#
+# Setup:
+#   conda create -n recipe-rag python=3.11
+#   conda activate recipe-rag
+#   pip install -r requirements.txt
+#
+# Note: Ollama is used via its HTTP API (http://localhost:11434), not a pip
+# package; install the Ollama app separately and pull qwen3:1.7b.
+# Only the direct project dependencies are pinned here; their transitive
+# dependencies (transformers, torchvision, pillow, scikit-learn, ...) are
+# resolved by pip from these.
+
+# --- Web / API backend (RAG/rag/demo) ---
+fastapi==0.136.3
+uvicorn==0.49.0
+python-multipart==0.0.32
+pydantic==2.13.4
+
+# --- Retrieval + embeddings ---
+sentence-transformers==5.5.1
+qdrant-client==1.18.0
+torch==2.12.0
+
+# --- Vision: ingredient detection (recipe_yolo) ---
+ultralytics==8.4.60
+
+# --- Data ---
+pandas==3.0.3
+numpy==2.4.6

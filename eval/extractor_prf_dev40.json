@@ -1,0 +1,135 @@
+{
+ "status": "EXTRACTOR_PRF_DEV40",
+ "scope": "per-field P/R/F1 over dev40; term-level set match, case-insensitive exact. Complements accuracy_of_40 (inflated by true-negatives) and recall_on_positive.",
+ "fields": [
+  "dish_name",
+  "must_use",
+  "diet",
+  "ingredient_exclude",
+  "method_include",
+  "method_exclude"
+ ],
+ "n": 40,
+ "models": {
+  "qwen3_1p7b": {
+   "model": "qwen3:1.7b",
+   "per_field": {
+    "dish_name": {
+     "precision": 0.8571,
+     "recall": 0.6,
+     "f1": 0.7059,
+     "tp": 6,
+     "fp": 1,
+     "fn": 4
+    },
+    "must_use": {
+     "precision": 0.75,
+     "recall": 0.375,
+     "f1": 0.5,
+     "tp": 6,
+     "fp": 2,
+     "fn": 10
+    },
+    "diet": {
+     "precision": 0.75,
+     "recall": 1.0,
+     "f1": 0.8571,
+     "tp": 3,
+     "fp": 1,
+     "fn": 0
+    },
+    "ingredient_exclude": {
+     "precision": 0.7143,
+     "recall": 0.8333,
+     "f1": 0.7692,
+     "tp": 5,
+     "fp": 2,
+     "fn": 1
+    },
+    "method_include": {
+     "precision": 0.0,
+     "recall": 0.0,
+     "f1": 0.0,
+     "tp": 0,
+     "fp": 2,
+     "fn": 7
+    },
+    "method_exclude": {
+     "precision": 0.5,
+     "recall": 0.5,
+     "f1": 0.5,
+     "tp": 1,
+     "fp": 1,
+     "fn": 1
+    }
+   },
+   "macro_f1": 0.5554,
+   "micro_f1": 0.5676,
+   "micro": {
+    "tp": 21,
+    "fp": 9,
+    "fn": 23
+   }
+  },
+  "qwen2p5_3b": {
+   "model": "qwen2.5:3b",
+   "per_field": {
+    "dish_name": {
+     "precision": 1.0,
+     "recall": 0.1,
+     "f1": 0.1818,
+     "tp": 1,
+     "fp": 0,
+     "fn": 9
+    },
+    "must_use": {
+     "precision": 0.0,
+     "recall": 0.0,
+     "f1": 0.0,
+     "tp": 0,
+     "fp": 0,
+     "fn": 16
+    },
+    "diet": {
+     "precision": 0.0,
+     "recall": 0.0,
+     "f1": 0.0,
+     "tp": 0,
+     "fp": 0,
+     "fn": 3
+    },
+    "ingredient_exclude": {
+     "precision": 1.0,
+     "recall": 0.6667,
+     "f1": 0.8,
+     "tp": 4,
+     "fp": 0,
+     "fn": 2
+    },
+    "method_include": {
+     "precision": 0.0,
+     "recall": 0.0,
+     "f1": 0.0,
+     "tp": 0,
+     "fp": 1,
+     "fn": 7
+    },
+    "method_exclude": {
+     "precision": 0.3333,
+     "recall": 0.5,
+     "f1": 0.4,
+     "tp": 1,
+     "fp": 2,
+     "fn": 1
+    }
+   },
+   "macro_f1": 0.2303,
+   "micro_f1": 0.2264,
+   "micro": {
+    "tp": 6,
+    "fp": 3,
+    "fn": 38
+   }
+  }
+ }
+}

@@ -1,0 +1,758 @@
+{
+  "status": "ANSWER_G_MODEL_COMPARISON",
+  "scope": "why_recommended_only",
+  "models": [
+    "qwen3:1.7b",
+    "qwen2.5:3b",
+    "qwen2.5:1.5b"
+  ],
+  "note": "thin-G: only why_recommended varies; deterministic warnings and upstream pipeline are fixed.",
+  "aggregate": {
+    "qwen3:1.7b": {
+      "n": 20,
+      "why_faithful": 20,
+      "genuinely_generated": 17,
+      "echoed": 0,
+      "copied_fewshot": 3,
+      "mean_latency_s": 8.0
+    },
+    "qwen2.5:3b": {
+      "n": 20,
+      "why_faithful": 20,
+      "genuinely_generated": 20,
+      "echoed": 0,
+      "copied_fewshot": 0,
+      "mean_latency_s": 9.31
+    },
+    "qwen2.5:1.5b": {
+      "n": 20,
+      "why_faithful": 20,
+      "genuinely_generated": 20,
+      "echoed": 0,
+      "copied_fewshot": 0,
+      "mean_latency_s": 7.23
+    }
+  },
+  "per_sample": [
+    {
+      "sample_id": "g01",
+      "query": "make something with chicken and rice",
+      "ingredients": "chicken, rice",
+      "feasibility": "cookable_as_is",
+      "deterministic_warning": "",
+      "candidates": [
+        {
+          "model": "qwen3:1.7b",
+          "why": "Both chicken and rice are already in your kitchen, so you can cook this right away.",
+          "faithful": true,
+          "echoed": false,
+          "copied_fewshot": true,
+          "validation_issues": [],
+          "latency_s": 5.31
+        },
+        {
+          "model": "qwen2.5:3b",
+          "why": "You have chicken and rice available; you can cook this recipe right away.",
+          "faithful": true,
+          "echoed": false,
+          "copied_fewshot": false,
+          "validation_issues": [],
+          "latency_s": 14.69
+        },
+        {
+          "model": "qwen2.5:1.5b",
+          "why": "You already have chicken and rice in your kitchen. You can cook this right away.",
+          "faithful": true,
+          "echoed": false,
+          "copied_fewshot": false,
+          "validation_issues": [],
+          "latency_s": 8.36
+        }
+      ]
+    },
+    {
+      "sample_id": "g02",
+      "query": "a quick meal with eggs and spinach",
+      "ingredients": "egg, spinach",
+      "feasibility": "cookable_with_minor_adjustment",
+      "deterministic_warning": "Some recipe ingredients are not in your available ingredients or basic pantry. This recipe needs several additional ingredients, but it still uses ingredients you provided.",
+      "candidates": [
+        {
+          "model": "qwen3:1.7b",
+          "why": "You have egg and spinach, but this recipe needs additional ingredients like cooking spray, milk, pepper, and salt. Add those for a quick meal.",
+          "faithful": true,
+          "echoed": false,
+          "copied_fewshot": false,
+          "validation_issues": [],
+          "latency_s": 11.16
+        },
+        {
+          "model": "qwen2.5:3b",
+          "why": "You have egg and spinach, so this quick meal is possible with a few more items from the store like cooking spray, milk, pepper, and salt.",
+          "faithful": true,
+          "echoed": false,
+          "copied_fewshot": false,
+          "validation_issues": [],
+          "latency_s": 8.2
+        },
+        {
+          "model": "qwen2.5:1.5b",
+          "why": "You have egg and spinach, which this recipe calls for. The missing ingredients (cooking spray, milk, pepper, salt) are not in your available or basic pantry ingredients, so this is a quick meal that fits the request with minor adjustments needed.",
+          "faithful": true,
+          "echoed": false,
+          "copied_fewshot": false,
+          "validation_issues": [],
+          "latency_s": 7.35
+        }
+      ]
+    },
+    {
+      "sample_id": "g03",
+      "query": "rice and beans for dinner",
+      "ingredients": "rice, beans",
+      "feasibility": "not_recommended",
+      "deterministic_warning": "This recipe is missing ingredients that are central to the dish. This recipe needs too many additional ingredients. Some recipe ingredients are not in your available ingredients or basic pantry.",
+      "candidates": [
+        {
+          "model": "qwen3:1.7b",
+          "why": "This recipe is missing essential ingredients like beef and vegetable oil, which are critical for a proper rice and beans meal.",
+          "faithful": true,
+          "echoed": false,
+          "copied_fewshot": false,
+          "validation_issues": [],
+          "latency_s": 6.87
+        },
+        {
+          "model": "qwen2.5:3b",
+          "why": "You have rice and beans, but this recipe requires many more ingredients like beef, vegetable oil, roma tomato, salt, soy sauce, garlic, and water to be fully prepared.",
+          "faithful": true,
+          "echoed": false,
+          "copied_fewshot": false,
+          "validation_issues": [],
+          "latency_s": 8.15
+        },
+        {
+          "model": "qwen2.5:1.5b",
+          "why": "You have rice and beans, but this recipe requires beef, vegetable oil, roma tomato, salt, soy sauce, garlic, and water. You do not have these ingredients available.",
+          "faithful": true,
+          "echoed": false,
+          "copied_fewshot": false,
+          "validation_issues": [],
+          "latency_s": 7.23
+        }
+      ]
+    },
+    {
+      "sample_id": "g04",
+      "query": "pasta with tomato and garlic",
+      "ingredients": "tomato, garlic",
+      "feasibility": "cookable_with_minor_adjustment",
+      "deterministic_warning": "Some recipe ingredients are not in your available ingredients or basic pantry. This recipe needs several additional ingredients, but it still uses ingredients you provided.",
+      "candidates": [
+        {
+          "model": "qwen3:1.7b",
+          "why": "You have tomato and garlic, but this recipe needs salt, onion, and pasta. You can add these missing ingredients to make it work.",
+          "faithful": true,
+          "echoed": false,
+          "copied_fewshot": false,
+          "validation_issues": [],
+          "latency_s": 8.84
+        },
+        {
+          "model": "qwen2.5:3b",
+          "why": "You have tomato and garlic, so you can make this pasta with minor adjustments by adding salt, onion, and the missing pasta ingredient.",
+          "faithful": true,
+          "echoed": false,
+          "copied_fewshot": false,
+          "validation_issues": [],
+          "latency_s": 8.08
+        },
+        {
+          "model": "qwen2.5:1.5b",
+          "why": "You have tomato and garlic, which this recipe calls for. The missing ingredients include salt, onion, pasta, and others that are not in your available ingredients or basic pantry. However, the recipe can be adjusted with additional non-pantry ingredients to make it a practical fit.",
+          "faithful": true,
+          "echoed": false,
+          "copied_fewshot": false,
+          "validation_issues": [],
+          "latency_s": 7.84
+        }
+      ]
+    },
+    {
+      "sample_id": "g05",
+      "query": "a simple egg and cheese breakfast",
+      "ingredients": "egg, cheese",
+      "feasibility": "cookable_as_is",
+      "deterministic_warning": "",
+      "candidates": [
+        {
+          "model": "qwen3:1.7b",
+          "why": "Both egg and cheese are already in your kitchen, so you can make this simple breakfast right away.",
+          "faithful": true,
+          "echoed": false,
+          "copied_fewshot": false,
+          "validation_issues": [],
+          "latency_s": 8.34
+        },
+        {
+          "model": "qwen2.5:3b",
+          "why": "You already have the main ingredients (egg and cheese) needed for a simple egg and cheese breakfast.",
+          "faithful": true,
+          "echoed": false,
+          "copied_fewshot": false,
+          "validation_issues": [],
+          "latency_s": 7.84
+        },
+        {
+          "model": "qwen2.5:1.5b",
+          "why": "You already have egg and cheese in your kitchen, so you can cook this simple breakfast right away.",
+          "faithful": true,
+          "echoed": false,
+          "copied_fewshot": false,
+          "validation_issues": [],
+          "latency_s": 7.05
+        }
+      ]
+    },
+    {
+      "sample_id": "g06",
+      "query": "dinner with beef and potatoes",
+      "ingredients": "beef, potato",
+      "feasibility": "cookable_with_minor_adjustment",
+      "deterministic_warning": "Some recipe ingredients are not in your available ingredients or basic pantry.",
+      "candidates": [
+        {
+          "model": "qwen3:1.7b",
+          "why": "Beef and potato are in your kitchen; you would just need to substitute a vegetable.",
+          "faithful": true,
+          "echoed": false,
+          "copied_fewshot": false,
+          "validation_issues": [],
+          "latency_s": 6.97
+        },
+        {
+          "model": "qwen2.5:3b",
+          "why": "You already have beef and potato, but you need a vegetable for this dish.",
+          "faithful": true,
+          "echoed": false,
+          "copied_fewshot": false,
+          "validation_issues": [],
+          "latency_s": 7.84
+        },
+        {
+          "model": "qwen2.5:1.5b",
+          "why": "You have beef and potato, which this recipe matches. You just need to add a vegetable for the minor adjustment.",
+          "faithful": true,
+          "echoed": false,
+          "copied_fewshot": false,
+          "validation_issues": [],
+          "latency_s": 7.11
+        }
+      ]
+    },
+    {
+      "sample_id": "g07",
+      "query": "chicken soup",
+      "ingredients": "chicken",
+      "feasibility": "cookable_as_is",
+      "deterministic_warning": "",
+      "candidates": [
+        {
+          "model": "qwen3:1.7b",
+          "why": "Chicken is already in your kitchen, so you can make this soup right away.",
+          "faithful": true,
+          "echoed": false,
+          "copied_fewshot": false,
+          "validation_issues": [],
+          "latency_s": 8.38
+        },
+        {
+          "model": "qwen2.5:3b",
+          "why": "You have the chicken needed for your soup recipe. You can cook it right away.",
+          "faithful": true,
+          "echoed": false,
+          "copied_fewshot": false,
+          "validation_issues": [],
+          "latency_s": 7.35
+        },
+        {
+          "model": "qwen2.5:1.5b",
+          "why": "You already have chicken in your kitchen, so you can cook this right away.",
+          "faithful": true,
+          "echoed": false,
+          "copied_fewshot": false,
+          "validation_issues": [],
+          "latency_s": 7.03
+        }
+      ]
+    },
+    {
+      "sample_id": "g08",
+      "query": "a salad with tomato and cucumber",
+      "ingredients": "tomato, cucumber",
+      "feasibility": "cookable_with_minor_adjustment",
+      "deterministic_warning": "Some recipe ingredients are not in your available ingredients or basic pantry. This recipe needs several additional ingredients, but it still uses ingredients you provided.",
+      "candidates": [
+        {
+          "model": "qwen3:1.7b",
+          "why": "You have tomato and cucumber, but this salad needs additional ingredients like olive oil, salt, avocado, and lemon to complete it.",
+          "faithful": true,
+          "echoed": false,
+          "copied_fewshot": false,
+          "validation_issues": [],
+          "latency_s": 6.67
+        },
+        {
+          "model": "qwen2.5:3b",
+          "why": "You have tomato and cucumber, so this salad can be made with the ingredients you already have. You just need to add olive oil, salt, avocado, and lemon.",
+          "faithful": true,
+          "echoed": false,
+          "copied_fewshot": false,
+          "validation_issues": [],
+          "latency_s": 8.02
+        },
+        {
+          "model": "qwen2.5:1.5b",
+          "why": "You have tomato and cucumber, which match the salad. The missing ingredients (olive oil, salt, avocado, lemon) are not in your available ingredients or basic pantry, so this recipe is not a practical fit right now.",
+          "faithful": true,
+          "echoed": false,
+          "copied_fewshot": false,
+          "validation_issues": [],
+          "latency_s": 7.23
+        }
+      ]
+    },
+    {
+      "sample_id": "g09",
+      "query": "tofu stir fry",
+      "ingredients": "tofu",
+      "feasibility": "not_recommended",
+      "deterministic_warning": "This recipe needs too many additional ingredients. Some recipe ingredients are not in your available ingredients or basic pantry.",
+      "candidates": [
+        {
+          "model": "qwen3:1.7b",
+          "why": "This recipe requires several additional ingredients (vegetable oil, spring onion, chili sauce, etc.) that are not in your inventory.",
+          "faithful": true,
+          "echoed": false,
+          "copied_fewshot": false,
+          "validation_issues": [],
+          "latency_s": 6.91
+        },
+        {
+          "model": "qwen2.5:3b",
+          "why": "You have tofu, but this recipe requires many more ingredients like vegetable oil, spring onion, chili sauce, and others that you don't currently have.",
+          "faithful": true,
+          "echoed": false,
+          "copied_fewshot": false,
+          "validation_issues": [],
+          "latency_s": 8.11
+        },
+        {
+          "model": "qwen2.5:1.5b",
+          "why": "You have tofu, but this recipe requires many other ingredients (vegetable oil, spring onion, chili sauce, sesame oil, egg noodle, red pepper, cashew nut, soy sauce, and others), so it is not a practical fit right now.",
+          "faithful": true,
+          "echoed": false,
+          "copied_fewshot": false,
+          "validation_issues": [],
+          "latency_s": 7.35
+        }
+      ]
+    },
+    {
+      "sample_id": "g10",
+      "query": "spicy chicken with no dairy",
+      "ingredients": "chicken, chili, rice",
+      "feasibility": "not_recommended",
+      "deterministic_warning": "This recipe needs too many additional ingredients. Some recipe ingredients are not in your available ingredients or basic pantry.",
+      "candidates": [
+        {
+          "model": "qwen3:1.7b",
+          "why": "The recipe includes chicken and chili, but many essential ingredients like olive oil, cilantro, and lemon are missing, making it not practical with the current inventory.",
+          "faithful": true,
+          "echoed": false,
+          "copied_fewshot": false,
+          "validation_issues": [],
+          "latency_s": 6.21
+        },
+        {
+          "model": "qwen2.5:3b",
+          "why": "You have chicken and chili, but this recipe requires many more ingredients like olive oil, cilantro, and others which you don't have yet.",
+          "faithful": true,
+          "echoed": false,
+          "copied_fewshot": false,
+          "validation_issues": [],
+          "latency_s": 8.11
+        },
+        {
+          "model": "qwen2.5:1.5b",
+          "why": "You have chicken and chili, but the recipe requires extra ingredients like olive oil, cilantro, chicken stock, garam masala, garlic, tomato, lemon, and salt. You do not have these items in your inventory.",
+          "faithful": true,
+          "echoed": false,
+          "copied_fewshot": false,
+          "validation_issues": [],
+          "latency_s": 7.27
+        }
+      ]
+    },
+    {
+      "sample_id": "g11",
+      "query": "I want lasagna",
+      "ingredients": "",
+      "feasibility": "cookable_as_is",
+      "deterministic_warning": "No ingredients were provided, so I did not check what you can cook from your kitchen.",
+      "candidates": [
+        {
+          "model": "qwen3:1.7b",
+          "why": "This matches the dish you asked for. You did not list ingredients, so I did not check what you would need to buy.",
+          "faithful": true,
+          "echoed": false,
+          "copied_fewshot": true,
+          "validation_issues": [],
+          "latency_s": 7.81
+        },
+        {
+          "model": "qwen2.5:3b",
+          "why": "You want lasagna but have not listed any of the ingredients needed. I didn't check what you already have in your kitchen.",
+          "faithful": true,
+          "echoed": false,
+          "copied_fewshot": false,
+          "validation_issues": [],
+          "latency_s": 12.74
+        },
+        {
+          "model": "qwen2.5:1.5b",
+          "why": "You do not have any ingredients listed to create lasagna. You need specific items like pasta, sauce, cheese, and vegetables that are missing in your inventory.",
+          "faithful": true,
+          "echoed": false,
+          "copied_fewshot": false,
+          "validation_issues": [],
+          "latency_s": 7.12
+        }
+      ]
+    },
+    {
+      "sample_id": "g12",
+      "query": "something warm and comforting",
+      "ingredients": "",
+      "feasibility": "cookable_as_is",
+      "deterministic_warning": "No ingredients were provided, so I did not check what you can cook from your kitchen.",
+      "candidates": [
+        {
+          "model": "qwen3:1.7b",
+          "why": "This is a warm and comforting dish that can be made with available ingredients, though specific details aren't provided.",
+          "faithful": true,
+          "echoed": false,
+          "copied_fewshot": false,
+          "validation_issues": [],
+          "latency_s": 8.93
+        },
+        {
+          "model": "qwen2.5:3b",
+          "why": "You have no specific ingredients listed, but this recipe is something warm and comforting, which matches your preference. You need to provide a list of available ingredients for me to suggest dishes that fit your request.",
+          "faithful": true,
+          "echoed": false,
+          "copied_fewshot": false,
+          "validation_issues": [],
+          "latency_s": 8.15
+        },
+        {
+          "model": "qwen2.5:1.5b",
+          "why": "You have no ingredients listed to cook with. Therefore, this recommendation is based on the assumption that you can cook something warm and comforting using whatever ingredients are available in your kitchen.",
+          "faithful": true,
+          "echoed": false,
+          "copied_fewshot": false,
+          "validation_issues": [],
+          "latency_s": 7.24
+        }
+      ]
+    },
+    {
+      "sample_id": "g13",
+      "query": "a creamy soup with no dairy",
+      "ingredients": "",
+      "feasibility": "cookable_as_is",
+      "deterministic_warning": "No ingredients were provided, so I did not check what you can cook from your kitchen.",
+      "candidates": [
+        {
+          "model": "qwen3:1.7b",
+          "why": "This recipe can be made without dairy, but since no ingredients are provided, I cannot confirm what's needed.",
+          "faithful": true,
+          "echoed": false,
+          "copied_fewshot": false,
+          "validation_issues": [],
+          "latency_s": 13.14
+        },
+        {
+          "model": "qwen2.5:3b",
+          "why": "You have no specific ingredients listed, but this recipe could be made without dairy. You would need to find suitable alternatives for the dairy-based components.",
+          "faithful": true,
+          "echoed": false,
+          "copied_fewshot": false,
+          "validation_issues": [],
+          "latency_s": 8.09
+        },
+        {
+          "model": "qwen2.5:1.5b",
+          "why": "You do not have any ingredients listed to create a creamy soup. Therefore, this recipe is not recommended for cooking at the moment.",
+          "faithful": true,
+          "echoed": false,
+          "copied_fewshot": false,
+          "validation_issues": [],
+          "latency_s": 7.19
+        }
+      ]
+    },
+    {
+      "sample_id": "g14",
+      "query": "a vegan dinner",
+      "ingredients": "",
+      "feasibility": "cookable_as_is",
+      "deterministic_warning": "No ingredients were provided, so I did not check what you can cook from your kitchen.",
+      "candidates": [
+        {
+          "model": "qwen3:1.7b",
+          "why": "This matches the dish you asked for. You did not list ingredients, so I did not check what you would need to buy.",
+          "faithful": true,
+          "echoed": false,
+          "copied_fewshot": true,
+          "validation_issues": [],
+          "latency_s": 10.37
+        },
+        {
+          "model": "qwen2.5:3b",
+          "why": "You asked for a vegan dinner but did not provide any ingredient list. I didn't check what you have in your kitchen yet.",
+          "faithful": true,
+          "echoed": false,
+          "copied_fewshot": false,
+          "validation_issues": [],
+          "latency_s": 8.09
+        },
+        {
+          "model": "qwen2.5:1.5b",
+          "why": "You do not have any specific ingredients listed to cook a vegan dinner. Therefore, this recipe is not recommended based on the information available.",
+          "faithful": true,
+          "echoed": false,
+          "copied_fewshot": false,
+          "validation_issues": [],
+          "latency_s": 7.17
+        }
+      ]
+    },
+    {
+      "sample_id": "g15",
+      "query": "a party drink with no alcohol",
+      "ingredients": "",
+      "feasibility": "cookable_as_is",
+      "deterministic_warning": "No ingredients were provided, so I did not check what you can cook from your kitchen.",
+      "candidates": [
+        {
+          "model": "qwen3:1.7b",
+          "why": "No ingredients were provided, so I cannot recommend a specific drink recipe.",
+          "faithful": true,
+          "echoed": false,
+          "copied_fewshot": false,
+          "validation_issues": [],
+          "latency_s": 7.07
+        },
+        {
+          "model": "qwen2.5:3b",
+          "why": "You have no ingredients listed, so this recipe matches a party drink with no alcohol. However, I didn't check what ingredients you have in your kitchen yet.",
+          "faithful": true,
+          "echoed": false,
+          "copied_fewshot": false,
+          "validation_issues": [],
+          "latency_s": 12.84
+        },
+        {
+          "model": "qwen2.5:1.5b",
+          "why": "You do not have any ingredients listed to make a party drink. This recommendation is based on the assumption that you are looking for something else entirely.",
+          "faithful": true,
+          "echoed": false,
+          "copied_fewshot": false,
+          "validation_issues": [],
+          "latency_s": 7.07
+        }
+      ]
+    },
+    {
+      "sample_id": "g16",
+      "query": "a fancy three-course dinner using just an egg",
+      "ingredients": "egg",
+      "feasibility": "cookable_with_minor_adjustment",
+      "deterministic_warning": "Some recipe ingredients are not in your available ingredients or basic pantry.",
+      "candidates": [
+        {
+          "model": "qwen3:1.7b",
+          "why": "The egg is already in your kitchen, and you would just need to add salt and water to complete the recipe.",
+          "faithful": true,
+          "echoed": false,
+          "copied_fewshot": false,
+          "validation_issues": [],
+          "latency_s": 6.98
+        },
+        {
+          "model": "qwen2.5:3b",
+          "why": "You have an egg, but the recipe also needs salt and water, which you don't have. Adding these will make it a simple yet fancy three-course dinner with just one ingredient from your kitchen.",
+          "faithful": true,
+          "echoed": false,
+          "copied_fewshot": false,
+          "validation_issues": [],
+          "latency_s": 8.17
+        },
+        {
+          "model": "qwen2.5:1.5b",
+          "why": "You have an egg, which is a key ingredient for this fancy three-course dinner. You will need to add salt and water to cook the dish as per the recipe instructions.",
+          "faithful": true,
+          "echoed": false,
+          "copied_fewshot": false,
+          "validation_issues": [],
+          "latency_s": 7.16
+        }
+      ]
+    },
+    {
+      "sample_id": "g17",
+      "query": "an elaborate layered cake with only flour",
+      "ingredients": "flour",
+      "feasibility": "not_recommended",
+      "deterministic_warning": "This recipe needs too many additional ingredients. Some recipe ingredients are not in your available ingredients or basic pantry.",
+      "candidates": [
+        {
+          "model": "qwen3:1.7b",
+          "why": "This recipe requires additional ingredients like water, shortening, yeast, and sugar, which are not in your pantry.",
+          "faithful": true,
+          "echoed": false,
+          "copied_fewshot": false,
+          "validation_issues": [],
+          "latency_s": 6.74
+        },
+        {
+          "model": "qwen2.5:3b",
+          "why": "You have flour, but this elaborate layered cake requires many more ingredients like water, red date, shortening, yeast, and sugar, so it is not a practical fit right now.",
+          "faithful": true,
+          "echoed": false,
+          "copied_fewshot": false,
+          "validation_issues": [],
+          "latency_s": 13.01
+        },
+        {
+          "model": "qwen2.5:1.5b",
+          "why": "The recipe requires water, red date, shortening, yeast, and sugar, which you do not have. This combination is missing from the provided list of ingredients.",
+          "faithful": true,
+          "echoed": false,
+          "copied_fewshot": false,
+          "validation_issues": [],
+          "latency_s": 6.67
+        }
+      ]
+    },
+    {
+      "sample_id": "g18",
+      "query": "a gourmet seafood paella with just rice",
+      "ingredients": "rice",
+      "feasibility": "not_recommended",
+      "deterministic_warning": "This recipe is missing ingredients that are central to the dish. This recipe needs too many additional ingredients. Some recipe ingredients are not in your available ingredients or basic pantry.",
+      "candidates": [
+        {
+          "model": "qwen3:1.7b",
+          "why": "This recipe requires several essential ingredients (tomato-based pasta sauce, gilthead, lobster, etc.) that are not in your available ingredients, making it impractical for a gourmet seafood paella with just rice.",
+          "faithful": true,
+          "echoed": false,
+          "copied_fewshot": false,
+          "validation_issues": [],
+          "latency_s": 6.38
+        },
+        {
+          "model": "qwen2.5:3b",
+          "why": "You have rice, but this gourmet seafood paella requires many more specific ingredients like gilthead, lobster, and others that you don't currently have.",
+          "faithful": true,
+          "echoed": false,
+          "copied_fewshot": false,
+          "validation_issues": [],
+          "latency_s": 8.05
+        },
+        {
+          "model": "qwen2.5:1.5b",
+          "why": "The recipe you're asking for includes seafood, but it's missing key components like tomato-based pasta sauce, gilthead, lobster, sofrito sauce, vegetable, shrimp, mussel, and squid. Additionally, the list of ingredients is extensive, requiring many more items that are not in your available pantry or basic kitchen essentials.",
+          "faithful": true,
+          "echoed": false,
+          "copied_fewshot": false,
+          "validation_issues": [],
+          "latency_s": 6.89
+        }
+      ]
+    },
+    {
+      "sample_id": "g19",
+      "query": "a three-course meal with one onion",
+      "ingredients": "onion",
+      "feasibility": "cookable_with_minor_adjustment",
+      "deterministic_warning": "Some recipe ingredients are not in your available ingredients or basic pantry.",
+      "candidates": [
+        {
+          "model": "qwen3:1.7b",
+          "why": "You have onion, but this recipe needs salt to complete the three-course meal.",
+          "faithful": true,
+          "echoed": false,
+          "copied_fewshot": false,
+          "validation_issues": [],
+          "latency_s": 7.39
+        },
+        {
+          "model": "qwen2.5:3b",
+          "why": "You have an onion, but you need salt for this recipe. You can still cook the meal with a minor adjustment.",
+          "faithful": true,
+          "echoed": false,
+          "copied_fewshot": false,
+          "validation_issues": [],
+          "latency_s": 7.97
+        },
+        {
+          "model": "qwen2.5:1.5b",
+          "why": "You have an onion, which is a key ingredient for many dishes. This fits well with the three-course meal concept and you can add salt to complement it.",
+          "faithful": true,
+          "echoed": false,
+          "copied_fewshot": false,
+          "validation_issues": [],
+          "latency_s": 7.12
+        }
+      ]
+    },
+    {
+      "sample_id": "g20",
+      "query": "a wedding cake with one banana",
+      "ingredients": "banana",
+      "feasibility": "cookable_with_minor_adjustment",
+      "deterministic_warning": "Some recipe ingredients are not in your available ingredients or basic pantry.",
+      "candidates": [
+        {
+          "model": "qwen3:1.7b",
+          "why": "This fits your banana; you would just need to add strawberry.",
+          "faithful": true,
+          "echoed": false,
+          "copied_fewshot": false,
+          "validation_issues": [],
+          "latency_s": 9.43
+        },
+        {
+          "model": "qwen2.5:3b",
+          "why": "You have a banana, but you need strawberries for this wedding cake. You can still make it with the banana and add strawberries later.",
+          "faithful": true,
+          "echoed": false,
+          "copied_fewshot": false,
+          "validation_issues": [],
+          "latency_s": 12.7
+        },
+        {
+          "model": "qwen2.5:1.5b",
+          "why": "You have a banana, which is perfect for this wedding cake. You just need to add strawberry.",
+          "faithful": true,
+          "echoed": false,
+          "copied_fewshot": false,
+          "validation_issues": [],
+          "latency_s": 7.07
+        }
+      ]
+    }
+  ]
+}

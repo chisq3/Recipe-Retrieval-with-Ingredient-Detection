@@ -1,0 +1,181 @@
+{
+  "method_exclude_detectors": {
+    "oven": {
+      "recipe_terms": [
+        "oven",
+        "bake",
+        "baked",
+        "baking",
+        "preheat",
+        "broil"
+      ]
+    },
+    "grill": {
+      "recipe_terms": [
+        "grill",
+        "grilled",
+        "grilling",
+        "barbecue",
+        "barbecued",
+        "bbq",
+        "char-grill",
+        "chargrill"
+      ]
+    },
+    "microwave": {
+      "recipe_terms": [
+        "microwave",
+        "microwaved"
+      ]
+    },
+    "deep fry": {
+      "recipe_terms": [
+        "deep-fry",
+        "deep fry",
+        "deep-fried",
+        "deep fried"
+      ]
+    }
+  },
+  "method_include_conflicts": {
+    "microwave": {
+      "conflicting_recipe_terms": [
+        "oven",
+        "bake",
+        "baked",
+        "baking",
+        "preheat",
+        "broil",
+        "grill"
+      ],
+      "trusted_evidence_fields": [
+        "title",
+        "instruction_text"
+      ]
+    },
+    "no cook": {
+      "conflicting_recipe_terms": [
+        "oven",
+        "bake",
+        "baked",
+        "baking",
+        "preheat",
+        "broil",
+        "grill",
+        "stove",
+        "stovetop",
+        "skillet",
+        "saucepan",
+        "boil",
+        "simmer",
+        "fry",
+        "saute"
+      ],
+      "trusted_evidence_fields": [
+        "title",
+        "instruction_text"
+      ]
+    }
+  },
+  "diet_conflict_terms": {
+    "vegetarian": [
+      "anchovy",
+      "bacon",
+      "beef",
+      "chicken",
+      "crab",
+      "crawfish",
+      "duck",
+      "fish",
+      "halibut",
+      "ham",
+      "lamb",
+      "lobster",
+      "mahi mahi",
+      "meat",
+      "mussel",
+      "pork",
+      "sausage",
+      "shrimp",
+      "squid",
+      "salmon",
+      "tilapia",
+      "trout",
+      "tuna",
+      "turkey"
+    ],
+    "vegan": [
+      "anchovy",
+      "bacon",
+      "beef",
+      "butter",
+      "cheese",
+      "chicken",
+      "cream",
+      "crab",
+      "crawfish",
+      "duck",
+      "egg",
+      "fish",
+      "halibut",
+      "ham",
+      "honey",
+      "lamb",
+      "lobster",
+      "mahi mahi",
+      "meat",
+      "milk",
+      "mussel",
+      "pork",
+      "sausage",
+      "shrimp",
+      "squid",
+      "salmon",
+      "tilapia",
+      "trout",
+      "tuna",
+      "turkey",
+      "yogurt"
+    ]
+  },
+  "ingredient_exclude_groups": {
+    "dairy": [
+      "butter",
+      "ghee",
+      "cheese",
+      "cream",
+      "milk",
+      "yogurt"
+    ],
+    "alcohol": [
+      "beer",
+      "brandy",
+      "rum",
+      "vodka",
+      "whiskey",
+      "wine"
+    ],
+    "pork": [
+      "bacon",
+      "ham",
+      "sausage"
+    ]
+  },
+  "dairy_terms_with_plant_analogue": [
+    "milk",
+    "cream",
+    "butter"
+  ],
+  "non_dairy_qualifiers": [
+    "coconut",
+    "almond",
+    "soy",
+    "soya",
+    "oat",
+    "rice",
+    "cashew",
+    "peanut",
+    "hemp",
+    "hazelnut"
+  ]
+}

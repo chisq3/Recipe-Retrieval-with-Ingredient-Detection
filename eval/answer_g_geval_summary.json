@@ -1,0 +1,35 @@
+{
+ "status": "ANSWER_G_GEVAL_SUMMARY",
+ "criteria": [
+  "faithfulness",
+  "relevance",
+  "fluency",
+  "constraint_safety"
+ ],
+ "per_model": {
+  "qwen3:1.7b": {
+   "n_scored": 20,
+   "faithfulness": 4.55,
+   "relevance": 4.45,
+   "fluency": 4.95,
+   "constraint_safety": 4.6,
+   "overall_mean": 4.638
+  },
+  "qwen2.5:1.5b": {
+   "n_scored": 20,
+   "faithfulness": 3.65,
+   "relevance": 4.05,
+   "fluency": 4.7,
+   "constraint_safety": 3.65,
+   "overall_mean": 4.013
+  },
+  "qwen2.5:3b": {
+   "n_scored": 20,
+   "faithfulness": 4.45,
+   "relevance": 4.6,
+   "fluency": 4.85,
+   "constraint_safety": 4.45,
+   "overall_mean": 4.588
+  }
+ }
+}

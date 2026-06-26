@@ -1,0 +1,44 @@
+# === Large generated artifacts (NOT source) ===
+# Runtime corpus, BM25 indexes, Qdrant storage, generated CSVs, and raw data.
+outputs/
+rag_dataset/
+
+# === Python caches / bytecode ===
+__pycache__/
+**/__pycache__/
+
+# === Frontend (RAG/frontend) ===
+# Track the source + the small pre-built dist/ (so `uvicorn rag.demo_api:app` serves
+# the UI with no Node build). Ignore installed deps.
+frontend/node_modules/
+
+# === Runtime/demo public repo cleanup ===
+# Keep the runtime code in rag/, frontend/, rules/runtime_*.json, and selected small
+# eval summaries. Ignore research-only scripts/docs/tests unless explicitly unignored.
+baseline/
+tests/
+md/
+eda/
+
+# Build-time taxonomy/rule files are not needed when using the prepared outputs/.
+rules/buildtime_*.json
+rules/*taxonomy*.json
+
+# Keep runtime rules visible.
+!rules/runtime_*.json
+
+# Evaluation artifacts: keep only selected summaries needed by the report/README.
+eval/*
+!eval/extractor_prf_dev40.json
+!eval/extractor_latency_bench.json
+!eval/production_eval_final_three_system_summary_cleanbm25_defaultw.json
+!eval/answer_g_geval_summary.json
+!eval/answer_g_model_comparison.json
+
+# YOLO detector: keep source scripts + small eval JSONs; ignore weights/runs.
+recipe_yolo/model_weights/
+recipe_yolo/runs/
+
+# === Notes ===
+# Tracked on purpose: runtime Python code, frontend source/dist, runtime rules,
+# selected eval summaries, and small detector eval reports.

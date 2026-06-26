@@ -1,0 +1,497 @@
+{
+  "config": {
+    "model": "/storage/student6/recipe_yolo/runs/yolo26/weights/best.pt",
+    "data": "/storage/student6/recipe_yolo/dataset/data.yaml",
+    "split": "test",
+    "imgsz": 640,
+    "device": "0",
+    "batch": 64,
+    "workers": 8
+  },
+  "metric_definitions": {
+    "precision": "bbox-level mean precision from Ultralytics model.val()",
+    "recall": "bbox-level mean recall from Ultralytics model.val()",
+    "mAP50": "bbox-level mean average precision at IoU=0.50",
+    "mAP50_95": "bbox-level mean average precision over IoU=0.50:0.95",
+    "fitness": "Ultralytics validation fitness score"
+  },
+  "overall": {
+    "precision": 0.8708584337318148,
+    "recall": 0.8347404744876709,
+    "mAP50": 0.8827438823510805,
+    "mAP50_95": 0.6758742368237258,
+    "fitness": 0.6758742368237258
+  },
+  "per_class": [
+    {
+      "class_id": 0,
+      "class_name": "apple",
+      "images": 40,
+      "instances": 85,
+      "precision": 0.9433732949950306,
+      "recall": 0.9529411764705882,
+      "mAP50": 0.9667665193099697,
+      "mAP50_95": 0.856962919878755
+    },
+    {
+      "class_id": 1,
+      "class_name": "avocado",
+      "images": 37,
+      "instances": 138,
+      "precision": 0.9509351518375001,
+      "recall": 0.8913043478260869,
+      "mAP50": 0.9459142440584277,
+      "mAP50_95": 0.733329796521654
+    },
+    {
+      "class_id": 2,
+      "class_name": "banana",
+      "images": 58,
+      "instances": 90,
+      "precision": 0.8892700508776202,
+      "recall": 0.8444444444444444,
+      "mAP50": 0.904543114490586,
+      "mAP50_95": 0.6889181737868859
+    },
+    {
+      "class_id": 3,
+      "class_name": "beef",
+      "images": 75,
+      "instances": 138,
+      "precision": 0.8734915509332747,
+      "recall": 0.8005488215734883,
+      "mAP50": 0.8738867237269429,
+      "mAP50_95": 0.6685864470031381
+    },
+    {
+      "class_id": 4,
+      "class_name": "bell_pepper",
+      "images": 57,
+      "instances": 142,
+      "precision": 0.842483600884252,
+      "recall": 0.8663144648431766,
+      "mAP50": 0.8992482615015112,
+      "mAP50_95": 0.6480363386523298
+    },
+    {
+      "class_id": 5,
+      "class_name": "bread",
+      "images": 44,
+      "instances": 79,
+      "precision": 0.9053409370015527,
+      "recall": 0.7974683544303798,
+      "mAP50": 0.8533577117554124,
+      "mAP50_95": 0.7024055810272725
+    },
+    {
+      "class_id": 6,
+      "class_name": "broccoli",
+      "images": 40,
+      "instances": 87,
+      "precision": 0.7760989238599246,
+      "recall": 0.7586206896551724,
+      "mAP50": 0.8196283690356148,
+      "mAP50_95": 0.5007500195100067
+    },
+    {
+      "class_id": 7,
+      "class_name": "cabbage",
+      "images": 66,
+      "instances": 118,
+      "precision": 0.9109791364456931,
+      "recall": 0.8672474159802476,
+      "mAP50": 0.9550519561275991,
+      "mAP50_95": 0.7418109100105432
+    },
+    {
+      "class_id": 8,
+      "class_name": "cantaloupe",
+      "images": 25,
+      "instances": 70,
+      "precision": 0.9579456208361035,
+      "recall": 0.9857142857142858,
+      "mAP50": 0.9891528318644532,
+      "mAP50_95": 0.8514551540004008
+    },
+    {
+      "class_id": 9,
+      "class_name": "carrot",
+      "images": 55,
+      "instances": 173,
+      "precision": 0.8934540504822723,
+      "recall": 0.8724943485204483,
+      "mAP50": 0.9268861298919475,
+      "mAP50_95": 0.7459181305452007
+    },
+    {
+      "class_id": 10,
+      "class_name": "cauliflower",
+      "images": 47,
+      "instances": 69,
+      "precision": 0.8877745126120739,
+      "recall": 0.855072463768116,
+      "mAP50": 0.9088304162381053,
+      "mAP50_95": 0.563306634328356
+    },
+    {
+      "class_id": 11,
+      "class_name": "chicken",
+      "images": 84,
+      "instances": 180,
+      "precision": 0.8721211496583495,
+      "recall": 0.7956609285065972,
+      "mAP50": 0.8503980547065977,
+      "mAP50_95": 0.5874817422051796
+    },
+    {
+      "class_id": 12,
+      "class_name": "chili",
+      "images": 38,
+      "instances": 115,
+      "precision": 0.7711809115992142,
+      "recall": 0.5568298927550213,
+      "mAP50": 0.6988381040624921,
+      "mAP50_95": 0.4011876373441643
+    },
+    {
+      "class_id": 13,
+      "class_name": "cucumber",
+      "images": 47,
+      "instances": 153,
+      "precision": 0.7968981065133844,
+      "recall": 0.6405228758169934,
+      "mAP50": 0.7175916051868758,
+      "mAP50_95": 0.45304903901170146
+    },
+    {
+      "class_id": 14,
+      "class_name": "dragon_fruit",
+      "images": 14,
+      "instances": 66,
+      "precision": 0.9544475904537862,
+      "recall": 0.9524250658926411,
+      "mAP50": 0.962650448143406,
+      "mAP50_95": 0.6361058513442226
+    },
+    {
+      "class_id": 15,
+      "class_name": "durian",
+      "images": 31,
+      "instances": 135,
+      "precision": 0.9245186633954623,
+      "recall": 0.9072960404227673,
+      "mAP50": 0.9517935646070689,
+      "mAP50_95": 0.7829821680675797
+    },
+    {
+      "class_id": 16,
+      "class_name": "egg",
+      "images": 31,
+      "instances": 134,
+      "precision": 0.9921668002020609,
+      "recall": 0.9452500304828613,
+      "mAP50": 0.9700641783522378,
+      "mAP50_95": 0.8380746306163033
+    },
+    {
+      "class_id": 17,
+      "class_name": "eggplant",
+      "images": 55,
+      "instances": 103,
+      "precision": 0.9061734794513484,
+      "recall": 0.8932038834951457,
+      "mAP50": 0.9627791771710501,
+      "mAP50_95": 0.818017812313923
+    },
+    {
+      "class_id": 18,
+      "class_name": "fish",
+      "images": 41,
+      "instances": 60,
+      "precision": 0.8297522941528112,
+      "recall": 0.75,
+      "mAP50": 0.813484619479445,
+      "mAP50_95": 0.5629248629398453
+    },
+    {
+      "class_id": 19,
+      "class_name": "garlic",
+      "images": 56,
+      "instances": 181,
+      "precision": 0.7423772823326009,
+      "recall": 0.7679558011049724,
+      "mAP50": 0.8187487258939804,
+      "mAP50_95": 0.5426217044313997
+    },
+    {
+      "class_id": 20,
+      "class_name": "ginger",
+      "images": 42,
+      "instances": 68,
+      "precision": 0.8908168791142296,
+      "recall": 0.7199169876697599,
+      "mAP50": 0.8349886170355622,
+      "mAP50_95": 0.619774104816256
+    },
+    {
+      "class_id": 21,
+      "class_name": "grape",
+      "images": 47,
+      "instances": 105,
+      "precision": 0.833823368327527,
+      "recall": 0.7523809523809524,
+      "mAP50": 0.8328509285093464,
+      "mAP50_95": 0.6382152480815948
+    },
+    {
+      "class_id": 22,
+      "class_name": "green_onion",
+      "images": 48,
+      "instances": 95,
+      "precision": 0.8912374316473239,
+      "recall": 0.49473684210526314,
+      "mAP50": 0.6224161662803009,
+      "mAP50_95": 0.430636273804761
+    },
+    {
+      "class_id": 23,
+      "class_name": "lemon",
+      "images": 34,
+      "instances": 95,
+      "precision": 0.783531396005561,
+      "recall": 0.968421052631579,
+      "mAP50": 0.9451722146914912,
+      "mAP50_95": 0.8155844874871679
+    },
+    {
+      "class_id": 24,
+      "class_name": "lime",
+      "images": 46,
+      "instances": 87,
+      "precision": 0.9040248287151755,
+      "recall": 0.8735632183908046,
+      "mAP50": 0.8890283624902904,
+      "mAP50_95": 0.7190724412393512
+    },
+    {
+      "class_id": 25,
+      "class_name": "mango",
+      "images": 48,
+      "instances": 85,
+      "precision": 0.9738996155490475,
+      "recall": 0.8780032364295642,
+      "mAP50": 0.9739651190795237,
+      "mAP50_95": 0.7808191796322355
+    },
+    {
+      "class_id": 26,
+      "class_name": "mint_leaves",
+      "images": 18,
+      "instances": 161,
+      "precision": 0.6890447118604877,
+      "recall": 0.7080745341614907,
+      "mAP50": 0.716742390970876,
+      "mAP50_95": 0.40520595281159794
+    },
+    {
+      "class_id": 27,
+      "class_name": "mushroom",
+      "images": 32,
+      "instances": 67,
+      "precision": 0.6254980927134869,
+      "recall": 0.582089552238806,
+      "mAP50": 0.632019656784441,
+      "mAP50_95": 0.3814078572530553
+    },
+    {
+      "class_id": 28,
+      "class_name": "napa_cabbage",
+      "images": 22,
+      "instances": 59,
+      "precision": 0.9512521200758381,
+      "recall": 0.9661016949152542,
+      "mAP50": 0.9886212996953839,
+      "mAP50_95": 0.7997742704850348
+    },
+    {
+      "class_id": 29,
+      "class_name": "onion",
+      "images": 73,
+      "instances": 129,
+      "precision": 0.9342359574309386,
+      "recall": 0.8809992282902273,
+      "mAP50": 0.9559803265964198,
+      "mAP50_95": 0.7875235749074488
+    },
+    {
+      "class_id": 30,
+      "class_name": "orange",
+      "images": 60,
+      "instances": 128,
+      "precision": 0.9689452549348504,
+      "recall": 0.9765625,
+      "mAP50": 0.9910135842369219,
+      "mAP50_95": 0.8714515673351771
+    },
+    {
+      "class_id": 31,
+      "class_name": "pineapple",
+      "images": 36,
+      "instances": 94,
+      "precision": 0.9219906541251849,
+      "recall": 0.9468085106382979,
+      "mAP50": 0.9818203895490554,
+      "mAP50_95": 0.8191679520535755
+    },
+    {
+      "class_id": 32,
+      "class_name": "pork",
+      "images": 63,
+      "instances": 145,
+      "precision": 0.7392884224401058,
+      "recall": 0.7034482758620689,
+      "mAP50": 0.7538697187360341,
+      "mAP50_95": 0.46594509974794934
+    },
+    {
+      "class_id": 33,
+      "class_name": "potato",
+      "images": 37,
+      "instances": 109,
+      "precision": 0.830589478924243,
+      "recall": 0.8996043408505593,
+      "mAP50": 0.9467149497303302,
+      "mAP50_95": 0.6763618401629646
+    },
+    {
+      "class_id": 34,
+      "class_name": "pumpkin",
+      "images": 31,
+      "instances": 46,
+      "precision": 0.9329516241519547,
+      "recall": 0.9782608695652174,
+      "mAP50": 0.9884707646176912,
+      "mAP50_95": 0.8587332394910339
+    },
+    {
+      "class_id": 35,
+      "class_name": "red_cabbage",
+      "images": 32,
+      "instances": 59,
+      "precision": 0.9804207827559537,
+      "recall": 1.0,
+      "mAP50": 0.995,
+      "mAP50_95": 0.9860875288342108
+    },
+    {
+      "class_id": 36,
+      "class_name": "salmon",
+      "images": 50,
+      "instances": 116,
+      "precision": 0.7791623088028135,
+      "recall": 0.7758620689655172,
+      "mAP50": 0.8005927601592241,
+      "mAP50_95": 0.5461332824350094
+    },
+    {
+      "class_id": 37,
+      "class_name": "sausage",
+      "images": 22,
+      "instances": 49,
+      "precision": 0.9520770307720084,
+      "recall": 0.8109861937693736,
+      "mAP50": 0.856711229946524,
+      "mAP50_95": 0.700598557347005
+    },
+    {
+      "class_id": 38,
+      "class_name": "shrimp",
+      "images": 26,
+      "instances": 89,
+      "precision": 0.812400085433099,
+      "recall": 0.797752808988764,
+      "mAP50": 0.8796031783855811,
+      "mAP50_95": 0.6088740559362565
+    },
+    {
+      "class_id": 39,
+      "class_name": "squid",
+      "images": 29,
+      "instances": 46,
+      "precision": 0.8659455651030875,
+      "recall": 0.8478260869565217,
+      "mAP50": 0.8987569622815368,
+      "mAP50_95": 0.583345692284082
+    },
+    {
+      "class_id": 40,
+      "class_name": "sweet_potato",
+      "images": 30,
+      "instances": 67,
+      "precision": 0.8395675907985695,
+      "recall": 0.8059701492537313,
+      "mAP50": 0.8813457106622994,
+      "mAP50_95": 0.6123325211725197
+    },
+    {
+      "class_id": 41,
+      "class_name": "tofu",
+      "images": 31,
+      "instances": 87,
+      "precision": 0.6911620412623027,
+      "recall": 0.6206896551724138,
+      "mAP50": 0.6595394292139432,
+      "mAP50_95": 0.46763739412321303
+    },
+    {
+      "class_id": 42,
+      "class_name": "tomato",
+      "images": 51,
+      "instances": 100,
+      "precision": 0.9210541794098674,
+      "recall": 0.81,
+      "mAP50": 0.8694127114539913,
+      "mAP50_95": 0.649176901027303
+    },
+    {
+      "class_id": 43,
+      "class_name": "watermelon",
+      "images": 32,
+      "instances": 106,
+      "precision": 0.8734933094467692,
+      "recall": 0.9245283018867925,
+      "mAP50": 0.9472970386403622,
+      "mAP50_95": 0.8278271362597399
+    },
+    {
+      "class_id": 44,
+      "class_name": "white_radish",
+      "images": 43,
+      "instances": 118,
+      "precision": 0.8481547251990251,
+      "recall": 0.940677966101695,
+      "mAP50": 0.9305428049107534,
+      "mAP50_95": 0.7044759417380748
+    },
+    {
+      "class_id": 45,
+      "class_name": "white_rice",
+      "images": 61,
+      "instances": 61,
+      "precision": 0.9408013803424503,
+      "recall": 0.9836065573770492,
+      "mAP50": 0.9777249481439094,
+      "mAP50_95": 0.8766284332961976
+    },
+    {
+      "class_id": 46,
+      "class_name": "zucchini",
+      "images": 41,
+      "instances": 78,
+      "precision": 0.9341944415290768,
+      "recall": 0.8846153846153846,
+      "mAP50": 0.9491464520952655,
+      "mAP50_95": 0.8093730434134325
+    }
+  ]
+}
