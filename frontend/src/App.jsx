@@ -36,14 +36,25 @@ export default function App() {
     } finally { setPhase('done') }
   }
 
-  async function handleSend(text, file, preview) {
-    push({ kind: 'user', text, imageUrl: preview })
+  async function handleSend(text, files, previews) {
+    push({ kind: 'user', text, imageUrls: previews })
     setPendingQuery(text)
-    if (file) {
-      setBusyLabel('Detecting ingredients...'); setPhase('busy')
+    if (files && files.length) {
+      setBusyLabel(files.length > 1 ? `Detecting ingredients from ${files.length} images...` : 'Detecting ingredients...')
+      setPhase('busy')
       try {
-        const dets = await detectIngredients(file)
-        setChips(dets.map((d) => ({ name: d.canonical, confidence: d.confidence, kept: true })))
+        const batches = []
+        for (const file of files) batches.push(...await detectIngredients(file))
+        const merged = new Map()
+        for (const d of batches) {
+          const name = d.canonical
+          if (!name) continue
+          const prev = merged.get(name)
+          if (!prev || (d.confidence ?? 0) > (prev.confidence ?? 0)) {
+            merged.set(name, { name, confidence: d.confidence, kept: true })
+          }
+        }
+        setChips([...merged.values()].sort((a, b) => a.name.localeCompare(b.name)))
         setPhase('review')
       } catch (e) { push({ kind: 'error', text: `Could not read the image: ${e.message}` }); setPhase('compose') }
     } else {
@@ -98,7 +109,7 @@ export default function App() {
 
 function Message({ m }) {
   if (m.kind === 'assistant-text') return <AssistantText>{m.text}</AssistantText>
-  if (m.kind === 'user') return <UserTurn text={m.text} imageUrl={m.imageUrl} />
+  if (m.kind === 'user') return <UserTurn text={m.text} imageUrls={m.imageUrls || (m.imageUrl ? [m.imageUrl] : [])} />
   if (m.kind === 'result') return <RecipeCard res={m.res} userIngredients={m.userIngredients} />
   if (m.kind === 'nosafe') return <NoSafeCard res={m.res} />
   if (m.kind === 'out-of-scope') return <OutOfScopeCard res={m.res} />
