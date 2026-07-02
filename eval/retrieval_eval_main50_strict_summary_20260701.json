@@ -1,0 +1,117 @@
+{
+  "schema_version": 1,
+  "status": "FINAL_RETRIEVAL_MAIN50_STRICT_SUMMARY",
+  "source_metrics": "eval/production_eval_metrics_codex_strict_main50_20260701.json",
+  "source_rankings": "eval/production_eval_retrieval_rankings_1p7b_english_cleanbm25_defaultw.json",
+  "source_gold": "eval/production_eval_main50_gold_codex_strict_20260701.json",
+  "scope": {
+    "main_retrieval_query_count": 50,
+    "safety_diagnostic_query_count": 14,
+    "main_is_headline_quality": true,
+    "safety_is_diagnostic": true,
+    "relevance_scale": "0 to 3",
+    "binary_relevance_threshold": "rel >= 2"
+  },
+  "systems": [
+    "bm25_only_gate",
+    "vector_gate",
+    "weighted_rrf_gate"
+  ],
+  "main_summary": {
+    "bm25_only_gate": {
+      "query_count": 50,
+      "ndcg@10": 0.5209191441553092,
+      "map@10": 0.48721064814814813,
+      "recall@10": 0.3119644882302205,
+      "p_rel2@10": 0.522,
+      "p_rel2@5": 0.52,
+      "p_rel3@5": 0.36,
+      "mrr@10": 0.6258333333333334,
+      "mean_relevance@10": 1.586,
+      "mean_returned@10": 8.0,
+      "missing_label_count": 0,
+      "idcg_zero_count": 0
+    },
+    "vector_gate": {
+      "query_count": 50,
+      "ndcg@10": 0.8435919378144774,
+      "map@10": 0.8540266623624758,
+      "recall@10": 0.6542996780160681,
+      "p_rel2@10": 0.81,
+      "p_rel2@5": 0.864,
+      "p_rel3@5": 0.624,
+      "mrr@10": 0.935,
+      "mean_relevance@10": 2.35,
+      "mean_returned@10": 10.0,
+      "missing_label_count": 0,
+      "idcg_zero_count": 0
+    },
+    "weighted_rrf_gate": {
+      "query_count": 50,
+      "ndcg@10": 0.8719245005793371,
+      "map@10": 0.8737050684471319,
+      "recall@10": 0.6667759459610861,
+      "p_rel2@10": 0.8240000000000001,
+      "p_rel2@5": 0.872,
+      "p_rel3@5": 0.64,
+      "mrr@10": 0.9428571428571428,
+      "mean_relevance@10": 2.39,
+      "mean_returned@10": 10.0,
+      "missing_label_count": 0,
+      "idcg_zero_count": 0
+    }
+  },
+  "paired_bootstrap_main_ndcg": [
+    {
+      "system_b_minus_system_a": "weighted_rrf_gate - vector_gate",
+      "metric": "ndcg@10",
+      "query_count": 50,
+      "point_delta": 0.028332562764859657,
+      "ci95": [
+        0.0037120904110813763,
+        0.056726702707786326
+      ],
+      "win_tie_loss": {
+        "win": 18,
+        "tie": 25,
+        "loss": 7
+      }
+    },
+    {
+      "system_b_minus_system_a": "bm25_only_gate - vector_gate",
+      "metric": "ndcg@10",
+      "query_count": 50,
+      "point_delta": -0.3226727936591683,
+      "ci95": [
+        -0.43673317987620797,
+        -0.21027802959645306
+      ],
+      "win_tie_loss": {
+        "win": 10,
+        "tie": 3,
+        "loss": 37
+      }
+    },
+    {
+      "system_b_minus_system_a": "weighted_rrf_gate - bm25_only_gate",
+      "metric": "ndcg@10",
+      "query_count": 50,
+      "point_delta": 0.35100535642402797,
+      "ci95": [
+        0.2454032015377098,
+        0.45963163968144344
+      ],
+      "win_tie_loss": {
+        "win": 39,
+        "tie": 4,
+        "loss": 7
+      }
+    }
+  ],
+  "notes": [
+    "This compact summary is derived from the strict Codex reviewed main50 evaluation used in the report.",
+    "P(rel>=2)@10 is computed from the judged main retrieval pool using the top 10 ranked documents for each system. Missing returned slots count as nonrelevant.",
+    "The full metrics, gold labels, and pooled rankings are kept as local evaluation artifacts and are not required for the runtime demo.",
+    "Safety diagnostic results are not included here because they are used for diagnostic analysis rather than headline retrieval quality."
+  ]
+}

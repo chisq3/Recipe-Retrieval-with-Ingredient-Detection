@@ -33,6 +33,7 @@ eval/*
 !eval/extractor_prf_dev40.json
 !eval/extractor_latency_bench.json
 !eval/production_eval_final_three_system_summary_cleanbm25_defaultw.json
+!eval/retrieval_eval_main50_strict_summary_20260701.json
 !eval/answer_g_geval_summary.json
 !eval/answer_g_model_comparison.json
 
