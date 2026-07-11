@@ -265,7 +265,7 @@ def build_extraction_messages(query: str, user_ingredients: str) -> list[dict[st
                     "meal_type": "breakfast",
                     "dish_type": None,
                     "main_ingredient_focus": [],
-                    "difficulty": "quick",
+                    "difficulty": None,
                     "goal": [],
                 },
                 "constraints": {
@@ -492,7 +492,7 @@ def build_extraction_messages(query: str, user_ingredients: str) -> list[dict[st
                 "26. If the query does not explicitly mention a country, region, or cuisine style, constraints.cuisine must be null. Never infer cuisine from the user's language or from examples.\n"
                 "27. dish_type must be the dish/category only. Do not include cuisine, diet, cost, time, or difficulty words inside dish_type.\n"
                 "28. goal should contain only preference labels such as few_ingredients, healthy, spicy, weeknight, or kid_friendly. Do not put meal type, cuisine, dish type, or full query phrases inside goal.\n"
-                "29. few ingredients is a goal, not a difficulty. Put it in goal as few_ingredients and leave difficulty null unless the query also says easy, quick, or beginner.\n"
+                "29. Difficulty describes cooking complexity and may contain values such as easy, medium, hard, or beginner. Few ingredients is a goal, not a difficulty, and must be written as few_ingredients. Do not place quick in difficulty or goal. Only fill constraints.max_time when the user provides a specific time limit; otherwise, preserve quick only in the original query.\n"
                 "30. If the user names a specific dish, including Vietnamese dish names such as pho, banh mi, bun bo hue, or thit kho, put that name in dish_name using plain lowercase ASCII when possible.\n"
                 "Return exactly one JSON object matching the schema."
             ),
