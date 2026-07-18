@@ -8,7 +8,6 @@ in one place so answer generation and evaluation share the same contract.
 
 from __future__ import annotations
 
-import copy
 import re
 import unicodedata
 from typing import Any
@@ -82,7 +81,7 @@ def normalize_ingredient_list(items: Any) -> list[str]:
 def strip_accents(text: str) -> str:
     normalized = unicodedata.normalize("NFKD", text)
     stripped = "".join(char for char in normalized if not unicodedata.combining(char))
-    return stripped.replace("Ä‘", "d").replace("Ä", "D")
+    return stripped.replace("\u0111", "d").replace("\u0110", "D")
 
 
 def normalized_text(value: Any) -> str:
@@ -217,7 +216,6 @@ def normalize_extracted_request(
     parsed: dict[str, Any] | None,
     query: str,
     ingredients: str,
-    trace: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
     """Normalize the LLM extraction payload into the retrieval contract."""
     input_ingredients = [
@@ -225,9 +223,6 @@ def normalize_extracted_request(
         for item in split_terms(ingredients)
         if (normalized := normalize_ingredient_field(item))
     ]
-    if trace is not None:
-        trace["trace_scope"] = "dish_name_only"
-        trace["events"] = []
     if not parsed:
         return {
             "dish_name": None,
@@ -246,9 +241,6 @@ def normalize_extracted_request(
     elif not isinstance(intent, dict):
         intent = {"text": query}
 
-    if constraints.get("method") == "no_oven":
-        method_exclude = constraints.get("method_exclude") if isinstance(constraints.get("method_exclude"), list) else []
-        constraints["method_exclude"] = list(dict.fromkeys([*method_exclude, "oven"]))
     if "meal_type" in constraints and not intent.get("meal_type"):
         intent["meal_type"] = constraints.get("meal_type")
     if constraints.get("difficulty") and not intent.get("difficulty"):
@@ -268,38 +260,13 @@ def normalize_extracted_request(
     elif difficulty:
         intent["difficulty"] = difficulty
 
-    def _dish_event(step: str, before, after, reason: str) -> None:
-        if trace is not None and before != after:
-            trace["events"].append({
-                "step": step,
-                "field": "dish_name",
-                "before": copy.deepcopy(before),
-                "after": copy.deepcopy(after),
-                "reason": reason,
-            })
-
     dish_name = parsed.get("dish_name")
     normalized_dish, stripped_suffix = strip_generic_dish_suffix(str(dish_name or ""))
-    _dish_event(
-        "NORMALIZE_AND_SUFFIX_STRIP",
-        dish_name,
-        normalized_dish or None,
-        f"normalize_term + strip generic suffix {stripped_suffix!r}" if stripped_suffix else "normalize_term",
-    )
-    before_suffix = normalized_dish
     if stripped_suffix in {"dish", "dishes", "meal", "meals"} and len(normalized_dish.split()) == 1:
         normalized_dish = ""
-        _dish_event("GENERIC_SUFFIX_DROP", before_suffix, None, f"single token with generic suffix {stripped_suffix!r}")
 
-    before_generic = normalized_dish
     if normalized_dish and dish_is_all_typed_generic(normalized_dish, intent, constraints):
         normalized_dish = ""
-        _dish_event(
-            "TYPED_GENERIC_DROP",
-            before_generic,
-            None,
-            "every dish token is explained by a typed generic field",
-        )
     intent["dish_name"] = normalized_dish or None
 
     intent["dish_type"] = normalize_term(intent.get("dish_type") or "") or None
@@ -311,25 +278,14 @@ def normalize_extracted_request(
     focus_terms = list(intent.get("main_ingredient_focus", []))
 
     available = parsed.get("available_ingredients")
-    if not isinstance(available, list):
-        available = parsed.get("must_have_ingredients")
     parsed_available_terms = normalize_ingredient_list(available)
     available_terms = parsed_available_terms or input_ingredients
-    intent["main_ingredient_focus"] = focus_terms
 
     must_use = parsed.get("must_use_ingredients")
     if not isinstance(must_use, list):
         must_use = []
     must_use_terms = normalize_ingredient_list(must_use)
     intent["main_ingredient_focus"] = focus_terms
-
-    parsed_excludes = parsed.get("exclude_ingredients")
-    if isinstance(parsed_excludes, list) and parsed_excludes:
-        existing_excludes = constraints.get("ingredient_exclude")
-        existing_excludes = existing_excludes if isinstance(existing_excludes, list) else []
-        constraints["ingredient_exclude"] = list(
-            dict.fromkeys([*existing_excludes, *normalize_ingredient_list(parsed_excludes)])
-        )
 
     validate_extracted_schema(intent, constraints)
 

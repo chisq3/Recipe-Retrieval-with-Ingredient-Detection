@@ -180,13 +180,6 @@ def normalize_constraints(constraints: dict[str, Any] | None, query: str = "") -
     method_exclude = as_list(constraints.get("method_exclude"))
     ingredient_exclude = as_list(constraints.get("ingredient_exclude"))
 
-    method = str(constraints.get("method") or "").strip().lower()
-    if method == "no_oven":
-        method_exclude.append("oven")
-
-    exclude_ingredients = as_list(constraints.get("exclude_ingredients"))
-    ingredient_exclude.extend(exclude_ingredients)
-
     diet = constraints.get("diet")
     cuisine = constraints.get("cuisine")
     max_time = constraints.get("max_time")

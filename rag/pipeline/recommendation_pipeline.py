@@ -178,10 +178,6 @@ def normalize_confirmed_extracted_request(
     if not isinstance(ingredient_exclude, list):
         ingredient_exclude = []
         constraints["ingredient_exclude"] = ingredient_exclude
-    # Older confirmed payloads may still carry a top-level exclude field.
-    # The nested constraint field is canonical; dropping the legacy key prevents
-    # a removed exclusion from reappearing during fallback normalization.
-    payload.pop("exclude_ingredients", None)
     must_use = payload.get("must_use_ingredients")
     must_use = must_use if isinstance(must_use, list) else []
     available = payload.get("available_ingredients")
