@@ -99,8 +99,8 @@ export function ReviewChips({ chips, onToggle, onRemove, onAdd, onRecommend }) {
             placeholder="Add ingredient..." className="flex-1 bg-surface-container-lowest border border-outline-variant rounded-lg py-2 px-3 font-body-md focus:border-primary focus:outline-none" />
           <button onClick={add} className="px-4 rounded-lg bg-surface-container border border-outline-variant font-label-md text-on-surface">Add</button>
         </div>
-        <button onClick={onRecommend} className="mt-sm inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-primary text-on-primary rounded-full font-label-md hover:bg-primary/90 transition-colors self-start">
-          <span className="material-symbols-outlined text-[20px]">auto_awesome</span>Recommend
+        <button onClick={onRecommend} className="mt-sm inline-flex items-center justify-center px-5 py-2.5 bg-primary text-on-primary rounded-full font-label-md hover:bg-primary/90 transition-colors self-start">
+          Recommend
         </button>
       </div>
     </div>
@@ -141,7 +141,7 @@ function QuickList({ items, have }) {
 function RecipeCardOld({ res, userIngredients }) {
   const [showOriginal, setShowOriginal] = useState(false)
   const [open, setOpen] = useState(false)
-  const f = res.recipe_facts || {}, t = f.time_minutes || {}, n = f.nutrition || {}, r = f.rating || {}, ev = res.evidence || {}
+  const f = res.recipe_facts || {}, t = f.time_minutes || {}, n = f.nutrition || {}, r = f.rating || {}
   const feasible = res.feasibility && !String(res.feasibility).includes('not_recommended')
   // Vietnamese ↔ original toggle (title always stays original)
   const hasVi = !!(res.ingredients_full_vi || res.instructions_vi || (res.adapted_steps && res.adapted_steps.length))
@@ -151,14 +151,6 @@ function RecipeCardOld({ res, userIngredients }) {
   const steps = showOriginal ? stepsEn : stepsVi
   const shopping = (res.shopping_list && res.shopping_list.length ? res.shopping_list : (res.missing_core_ingredients || []))
   const cuisines = res.cuisine_tags ? String(res.cuisine_tags).split('|').map((s) => s.trim()).filter(Boolean) : []
-  const u = ev.understood_request || {}
-  const safe = [], soft = []
-  if (u.diet) safe.push('diet: ' + u.diet)
-  ;(u.method_exclude || []).forEach((m) => safe.push('no ' + m))
-  ;(u.exclude || []).forEach((m) => safe.push('exclude: ' + m))
-  if (u.cuisine) soft.push('cuisine: ' + u.cuisine)
-  if (u.meal_type) soft.push('meal: ' + u.meal_type)
-  if (u.max_time) soft.push('≤ ' + u.max_time + 'm')
   const stat = (icon, label, val) => (
     <div className="flex flex-col items-center text-center gap-1"><span className="material-symbols-outlined text-outline text-[20px]">{icon}</span><span className="font-label-sm text-outline">{label}</span><span className="font-label-md text-on-surface">{val}</span></div>
   )
@@ -235,27 +227,6 @@ function RecipeCardOld({ res, userIngredients }) {
 
             </div>
 
-            <details className="border border-surface-container-high bg-surface-container-low/60 backdrop-blur-sm group" style={{ borderRadius: '12px' }}>
-              <summary className="p-md cursor-pointer flex items-center justify-between list-none"><div className="flex items-center gap-2"><span className="material-symbols-outlined text-primary text-[22px]">analytics</span><span className="font-label-md text-on-surface text-[16px]">Evidence &amp; Decision</span></div><span className="material-symbols-outlined text-on-surface-variant transition-transform group-open:rotate-180">expand_more</span></summary>
-              <div className="p-md border-t border-surface-container-high flex flex-col gap-md">
-                <div>
-                  <div className="font-label-sm text-outline uppercase tracking-wider mb-2">Understood request</div>
-                  <div className="flex flex-wrap gap-2">
-                    {(!safe.length && !soft.length) ? <span className="font-label-sm text-on-surface-variant">(no special constraints)</span> : null}
-                    {safe.map((c) => <span key={c} className="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-success/10 text-success font-label-sm"><span className="material-symbols-outlined text-[14px]">verified_user</span>{c}</span>)}
-                    {soft.map((c) => <span key={c} className="px-2 py-1 rounded-full bg-surface-container text-on-surface-variant font-label-sm">{c}</span>)}
-                  </div>
-                </div>
-                <div className="grid grid-cols-2 gap-x-lg gap-y-2 font-label-sm text-on-surface-variant">
-                  <div className="flex justify-between border-b border-surface-container-high/60 pb-1"><span>Source</span><span className="font-bold text-on-surface">{na(res.candidate_source)}</span></div>
-                  <div className="flex justify-between border-b border-surface-container-high/60 pb-1"><span>Retrieval rank</span><span className="font-bold text-on-surface">{na(res.selected_rank)}</span></div>
-                  <div className="flex justify-between border-b border-surface-container-high/60 pb-1"><span>Request constraints</span><span className="font-bold text-on-surface">{res.extraction_source === 'human_confirmed' ? 'Human confirmed' : 'Model extracted'}</span></div>
-                  <div className="flex justify-between border-b border-surface-container-high/60 pb-1"><span>Rejected by gate</span><span className="font-bold text-error">{na(ev.rejected_by_gate)}</span></div>
-                  <div className="flex justify-between border-b border-surface-container-high/60 pb-1"><span>Issues repaired</span><span className="font-bold text-on-surface">{na(ev.validation_issues_repaired)}</span></div>
-                  <div className="flex justify-between"><span>Processing time</span><span className="font-bold text-on-surface">{(ev.timings_seconds && ev.timings_seconds.total != null) ? ev.timings_seconds.total + 's' : 'N/A'}</span></div>
-                </div>
-              </div>
-            </details>
           </div>
         </div>
       </div>
@@ -266,7 +237,7 @@ function RecipeCardOld({ res, userIngredients }) {
 export function RecipeCard({ res, userIngredients }) {
   const [open, setOpen] = useState(false)
   const [showOriginal, setShowOriginal] = useState(false)
-  const f = res.recipe_facts || {}, t = f.time_minutes || {}, n = f.nutrition || {}, r = f.rating || {}, ev = res.evidence || {}
+  const f = res.recipe_facts || {}, t = f.time_minutes || {}, n = f.nutrition || {}, r = f.rating || {}
   const badge = feasibilityBadge(res.feasibility)
   const hasVi = !!(res.ingredients_full_vi || res.instructions_vi || (res.adapted_steps && res.adapted_steps.length))
   const ingredients = showOriginal ? (res.ingredients_full || []) : (res.ingredients_full_vi || res.ingredients_full || [])
@@ -275,14 +246,6 @@ export function RecipeCard({ res, userIngredients }) {
   const steps = showOriginal ? stepsEn : stepsVi
   const shopping = (res.shopping_list && res.shopping_list.length ? res.shopping_list : (res.missing_core_ingredients || []))
   const cuisines = res.cuisine_tags ? String(res.cuisine_tags).split('|').map((s) => s.trim()).filter(Boolean) : []
-  const u = ev.understood_request || {}
-  const safe = [], soft = []
-  if (u.diet) safe.push('diet: ' + u.diet)
-  ;(u.method_exclude || []).forEach((m) => safe.push('no ' + m))
-  ;(u.exclude || []).forEach((m) => safe.push('exclude: ' + m))
-  if (u.cuisine) soft.push('cuisine: ' + u.cuisine)
-  if (u.meal_type) soft.push('meal: ' + u.meal_type)
-  if (u.max_time) soft.push('<= ' + u.max_time + 'm')
   const fullList = (items, empty = 'None') => (items && items.length ? items.join(', ') : empty)
 
   const stat = (icon, label, val) => (
@@ -424,30 +387,6 @@ export function RecipeCard({ res, userIngredients }) {
                   </section>
                 </div>
 
-                <details className="border border-surface-container-high bg-surface-container-low/60 backdrop-blur-sm group" style={{ borderRadius: '12px' }}>
-                  <summary className="p-md cursor-pointer flex items-center justify-between list-none">
-                    <div className="flex items-center gap-2"><span className="material-symbols-outlined text-primary text-[22px]">analytics</span><span className="font-label-md text-on-surface text-[16px]">Evidence &amp; Decision</span></div>
-                    <span className="material-symbols-outlined text-on-surface-variant transition-transform group-open:rotate-180">expand_more</span>
-                  </summary>
-                  <div className="p-md border-t border-surface-container-high flex flex-col gap-md">
-                    <div>
-                      <div className="font-label-sm text-outline uppercase tracking-wider mb-2">Understood request</div>
-                      <div className="flex flex-wrap gap-2">
-                        {(!safe.length && !soft.length) ? <span className="font-label-sm text-on-surface-variant">(no special constraints)</span> : null}
-                        {safe.map((c) => <span key={c} className="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-success/10 text-success font-label-sm"><span className="material-symbols-outlined text-[14px]">verified_user</span>{c}</span>)}
-                        {soft.map((c) => <span key={c} className="px-2 py-1 rounded-full bg-surface-container text-on-surface-variant font-label-sm">{c}</span>)}
-                      </div>
-                    </div>
-                    <div className="grid md:grid-cols-2 gap-x-lg gap-y-2 font-label-sm text-on-surface-variant">
-                      <div className="flex justify-between border-b border-surface-container-high/60 pb-1"><span>Source</span><span className="font-bold text-on-surface">{na(res.candidate_source)}</span></div>
-                      <div className="flex justify-between border-b border-surface-container-high/60 pb-1"><span>Retrieval rank</span><span className="font-bold text-on-surface">{na(res.selected_rank)}</span></div>
-                      <div className="flex justify-between border-b border-surface-container-high/60 pb-1"><span>Request constraints</span><span className="font-bold text-on-surface">{res.extraction_source === 'human_confirmed' ? 'Human confirmed' : 'Model extracted'}</span></div>
-                      <div className="flex justify-between border-b border-surface-container-high/60 pb-1"><span>Rejected by gate</span><span className="font-bold text-error">{na(ev.rejected_by_gate)}</span></div>
-                      <div className="flex justify-between border-b border-surface-container-high/60 pb-1"><span>Issues repaired</span><span className="font-bold text-on-surface">{na(ev.validation_issues_repaired)}</span></div>
-                      <div className="flex justify-between"><span>Processing time</span><span className="font-bold text-on-surface">{(ev.timings_seconds && ev.timings_seconds.total != null) ? ev.timings_seconds.total + 's' : 'N/A'}</span></div>
-                    </div>
-                  </div>
-                </details>
               </main>
             </div>
             </div>
